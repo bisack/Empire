@@ -138,14 +138,13 @@ else
 		sudo pip install -r requirements.txt 
 	elif lsb_release -d | grep -q "Kali"; then
 		Release=Kali
+		wget --no-check-certificate https://ftp.us.debian.org/debian/pool/main/o/openssl/libssl1.0.0_1.0.1t-1%2Bdeb8u8_amd64.deb
+		dpkg -i libssl1.0.0_1.0.1t-1+deb8u8_amd64.deb
         # Kali currently uses libicu60, but PowerShell needs 57.
         wget http://archive.ubuntu.com/ubuntu/pool/main/i/icu/libicu57_57.1-6_amd64.deb
         dpkg -i libicu57_57.1-6_amd64.deb
         # Downgrade urllib3 to version 1.22
         pip install urllib3==1.22
-        # Fix libssl1.0.0 URL as per phra's pull request
-		wget --no-check-certificate https://ftp.us.debian.org/debian/pool/main/o/openssl/libssl1.0.0_1.0.1t-1%2Bdeb8u8_amd64.deb
-		dpkg -i libssl1.0.0_1.0.1t-1+deb8u8_amd64.deb
 		sudo apt-get install -y make g++ python-dev python-m2crypto swig python-pip libxml2-dev default-jdk zlib1g-dev libssl1.0-dev build-essential libssl1.0-dev libxml2-dev zlib1g-dev
 		pip install --upgrade pip
 		sudo pip install -r requirements.txt 
